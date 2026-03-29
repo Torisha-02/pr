@@ -13,5 +13,6 @@ namespace WpfApp1
     /// </summary>
     public partial class App : Application
     {
+        public static Entities.practiceEntities Context { get; } = new Entities.practiceEntities();
     }
 }

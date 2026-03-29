@@ -7,10 +7,11 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button Content="Войти" HorizontalAlignment="Left" Height="33" Margin="298,232,0,0" VerticalAlignment="Top" Width="182" Background="#FFDEEFC0"/>
-        <Label Content="Авторизация" HorizontalAlignment="Center" Height="42" Margin="0,97,0,0" VerticalAlignment="Top" Width="146" FontSize="20"/>
-        <TextBox HorizontalAlignment="Left" Height="33" Margin="298,144,0,0" TextWrapping="Wrap" Text="Логин" VerticalAlignment="Top" Width="182"/>
-        <TextBox HorizontalAlignment="Left" Height="33" Margin="298,184,0,0" TextWrapping="Wrap" Text="Пароль" VerticalAlignment="Top" Width="182"/>
-
+        <Frame x:Name="MainFrame"></Frame>
+        <StackPanel Width="800" Height="70" Background="LightGreen" Margin="0,0,0,364">
+        
+        </StackPanel>
+        
+        <StackPanel Width="800" Height="70" Background="LightGreen" Margin="0,364,0,0"/>
     </Grid>
 </Window>
