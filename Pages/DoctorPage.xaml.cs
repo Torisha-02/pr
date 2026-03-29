@@ -17,16 +17,16 @@ using WpfApp1.Entities;
 namespace WpfApp1.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для MainPage.xaml
+    /// Логика взаимодействия для DoctorPage.xaml
     /// </summary>
-    public partial class MainPage : Page
+    public partial class DoctorPage : Page
     {
-        public Users _currentUser;
-
-        public MainPage(Users user)
+        
+        private Users _currentUser;
+        public DoctorPage(Users user)
         {
             InitializeComponent();
-            _currentUser = user;
+
         }
     }
 }

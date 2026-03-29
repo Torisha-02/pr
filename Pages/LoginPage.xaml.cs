@@ -24,6 +24,7 @@ namespace WpfApp1.Pages
     /// </summary>
     public partial class LoginPage : Page
     {
+       
         public LoginPage()
         {
             InitializeComponent();
@@ -32,18 +33,23 @@ namespace WpfApp1.Pages
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             using (var db = new practiceEntities())
-            { 
+            {
                 string login = loginBox.Text;
-                string password =PasswordBox.Password;
+                string password = PasswordBox.Password;
                 var user = db.Users
-                .FirstOrDefault(u => u.Login==login && u.PasswordHash ==password);
-           if(user==null)
-                {
+                .FirstOrDefault(u => u.Login == login && u.PasswordHash == password);
+
+                if (user.Roles.Name == "Администратор")
+                    NavigationService.Navigate(new MainPage(user));
+                else if (user.Roles.Name == "Врач")
+                    NavigationService.Navigate(new DoctorPage(user));
+                else if (user.Roles.Name == "Медсестра")
+                    NavigationService.Navigate(new NursePage(user));
+                else if (user == null)
+                 {
                     MessageBox.Show("Неверный логин и пароль!кхм");
                     return;
-                }
-           
-                MessageBox.Show($"Добро пожаловать! Роль: {user.Roles.Name}");
+                    }
             }
         }
     }

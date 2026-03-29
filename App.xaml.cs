@@ -5,14 +5,16 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using WpfApp1.Entities;
 
 namespace WpfApp1
-{
+{ 
     /// <summary>
     /// Логика взаимодействия для App.xaml
     /// </summary>
     public partial class App : Application
     {
+        
         public static Entities.practiceEntities Context { get; } = new Entities.practiceEntities();
     }
 }
