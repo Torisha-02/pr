@@ -8,7 +8,14 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MainPage">
 
-    <Grid>
-        
+    <Grid Margin="0,70">
+        <TabControl>
+            <TabItem Header=" Users">
+                <StackPanel>
+                    <DataGrid x:Name="UsersDataGrid" AutoGenerateColumns="False" Height="300" Margin="0,20"/>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+
     </Grid>
 </Page>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище practiceModel" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище practiceModel" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Employees">
           <Key>
             <PropertyRef Name="Id" />
@@ -65,6 +65,7 @@
           <Property Name="PasswordHash" Type="nvarchar(max)" />
           <Property Name="RoleId" Type="int" />
           <Property Name="EmployeeId" Type="int" />
+          <Property Name="IsBlocked" Type="tinyint" />
         </EntityType>
         <Association Name="FK__Exams__EmployeeI__47DBAE45">
           <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
@@ -138,8 +139,7 @@
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="practiceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -211,6 +211,7 @@
           <Property Name="EmployeeId" Type="Int32" />
           <NavigationProperty Name="Employees" Relationship="Self.FK__Users__EmployeeI__44FF419A" FromRole="Users" ToRole="Employees" />
           <NavigationProperty Name="Roles" Relationship="Self.FK__Users__RoleId__440B1D61" FromRole="Users" ToRole="Roles" />
+          <Property Name="IsBlocked" Type="Byte" />
         </EntityType>
         <Association Name="FK__Exams__EmployeeI__47DBAE45">
           <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
@@ -349,6 +350,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="practiceModel.Users">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="IsBlocked" ColumnName="IsBlocked" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />

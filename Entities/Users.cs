@@ -19,6 +19,7 @@ namespace WpfApp1.Entities
         public string PasswordHash { get; set; }
         public Nullable<int> RoleId { get; set; }
         public Nullable<int> EmployeeId { get; set; }
+        public Nullable<byte> IsBlocked { get; set; }
     
         public virtual Employees Employees { get; set; }
         public virtual Roles Roles { get; set; }
