@@ -14,7 +14,7 @@
             <Label Content="Авторизация" Height="42"   Width="146" FontSize="20"/>
             <TextBox x:Name="loginBox" Height="33"  Text="Логин" Width="182"/>
             <PasswordBox Name="PasswordBox"  Height="33"   Width="182"/>
-            <Button Content="Войти"  Height="33"  Width="182" Background="#FFDEEFC0" Click="Button_Click"/>
+            <Button Content="Войти"  Height="33"  Width="182" Background="#FFADCCFF" Click="Button_Click" FontSize="16" FontFamily="Mongolian Baiti"/>
 
         </StackPanel>
     </Grid>
