@@ -12,7 +12,21 @@
         <TabControl>
             <TabItem Header=" Users">
                 <StackPanel>
-                    <DataGrid x:Name="UsersDataGrid" AutoGenerateColumns="False" Height="300" Margin="0,20"/>
+                    <DataGrid x:Name="UsersDataGrid" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Логин" Binding="{Binding Login}" />
+                            <DataGridTextColumn Header="Роль" Binding="{Binding RoleName}" />
+                            <DataGridCheckBoxColumn Header="Заблокирован" Binding="{Binding IsBlocked}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <DataGrid x:Name="EmployeeDG" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ФИО" Binding="{Binding LastName}" />
+                            <DataGridTextColumn Header="Отдел" Binding="{Binding Department}" />
+                            <DataGridTextColumn Header="Должность" Binding="{Binding Position}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </StackPanel>
             </TabItem>
         </TabControl>

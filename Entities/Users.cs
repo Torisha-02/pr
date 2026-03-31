@@ -21,7 +21,7 @@ namespace WpfApp1.Entities
         public Nullable<int> EmployeeId { get; set; }
         public Nullable<byte> IsBlocked { get; set; }
     
-        public virtual Employees Employees { get; set; }
         public virtual Roles Roles { get; set; }
+        public virtual Employees Employees { get; set; }
     }
 }

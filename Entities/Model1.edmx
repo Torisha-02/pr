@@ -11,8 +11,6 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="LastName" Type="nvarchar" MaxLength="100" />
-          <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
-          <Property Name="MiddleName" Type="nvarchar" MaxLength="100" />
           <Property Name="BirthDate" Type="date" />
           <Property Name="Department" Type="nvarchar" MaxLength="100" />
           <Property Name="Position" Type="nvarchar" MaxLength="100" />
@@ -143,20 +141,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="practiceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Employees">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="MiddleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="BirthDate" Type="DateTime" Precision="0" />
-          <Property Name="Department" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Position" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Exams" Relationship="Self.FK__Exams__EmployeeI__47DBAE45" FromRole="Employees" ToRole="Exams" />
-          <NavigationProperty Name="Users" Relationship="Self.FK__Users__EmployeeI__44FF419A" FromRole="Employees" ToRole="Users" />
-        </EntityType>
         <EntityType Name="Exams">
           <Key>
             <PropertyRef Name="Id" />
@@ -171,8 +155,8 @@
           <Property Name="HealthGroupId" Type="Int32" />
           <Property Name="IsFit" Type="Boolean" />
           <Property Name="NextExamDate" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="Employees" Relationship="Self.FK__Exams__EmployeeI__47DBAE45" FromRole="Exams" ToRole="Employees" />
           <NavigationProperty Name="HealthGroups" Relationship="Self.FK__Exams__HealthGro__49C3F6B7" FromRole="Exams" ToRole="HealthGroups" />
+          <NavigationProperty Name="Employees" Relationship="practiceModel.FK__Exams__EmployeeI__47DBAE45" FromRole="Exams" ToRole="Employees" />
         </EntityType>
         <EntityType Name="HealthGroups">
           <Key>
@@ -209,34 +193,10 @@
           <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="RoleId" Type="Int32" />
           <Property Name="EmployeeId" Type="Int32" />
-          <NavigationProperty Name="Employees" Relationship="Self.FK__Users__EmployeeI__44FF419A" FromRole="Users" ToRole="Employees" />
           <NavigationProperty Name="Roles" Relationship="Self.FK__Users__RoleId__440B1D61" FromRole="Users" ToRole="Roles" />
           <Property Name="IsBlocked" Type="Byte" />
+          <NavigationProperty Name="Employees" Relationship="practiceModel.FK__Users__EmployeeI__44FF419A" FromRole="Users" ToRole="Employees" />
         </EntityType>
-        <Association Name="FK__Exams__EmployeeI__47DBAE45">
-          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
-          <End Role="Exams" Type="Self.Exams" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employees">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Exams">
-              <PropertyRef Name="EmployeeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Users__EmployeeI__44FF419A">
-          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
-          <End Role="Users" Type="Self.Users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employees">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Users">
-              <PropertyRef Name="EmployeeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Exams__HealthGro__49C3F6B7">
           <End Role="HealthGroups" Type="Self.HealthGroups" Multiplicity="0..1" />
           <End Role="Exams" Type="Self.Exams" Multiplicity="*" />
@@ -262,20 +222,11 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="practiceEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Employees" EntityType="Self.Employees" />
           <EntitySet Name="Exams" EntityType="Self.Exams" />
           <EntitySet Name="HealthGroups" EntityType="Self.HealthGroups" />
           <EntitySet Name="Roles" EntityType="Self.Roles" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Users" EntityType="Self.Users" />
-          <AssociationSet Name="FK__Exams__EmployeeI__47DBAE45" Association="Self.FK__Exams__EmployeeI__47DBAE45">
-            <End Role="Employees" EntitySet="Employees" />
-            <End Role="Exams" EntitySet="Exams" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Users__EmployeeI__44FF419A" Association="Self.FK__Users__EmployeeI__44FF419A">
-            <End Role="Employees" EntitySet="Employees" />
-            <End Role="Users" EntitySet="Users" />
-          </AssociationSet>
           <AssociationSet Name="FK__Exams__HealthGro__49C3F6B7" Association="Self.FK__Exams__HealthGro__49C3F6B7">
             <End Role="HealthGroups" EntitySet="HealthGroups" />
             <End Role="Exams" EntitySet="Exams" />
@@ -284,26 +235,58 @@
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
+          <EntitySet Name="Employees" EntityType="practiceModel.Employees" />
+          <AssociationSet Name="FK__Exams__EmployeeI__47DBAE45" Association="practiceModel.FK__Exams__EmployeeI__47DBAE45">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Exams" EntitySet="Exams" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Users__EmployeeI__44FF419A" Association="practiceModel.FK__Users__EmployeeI__44FF419A">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BirthDate" Type="DateTime" Precision="0" />
+          <Property Name="Department" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Position" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Exams" Relationship="practiceModel.FK__Exams__EmployeeI__47DBAE45" FromRole="Employees" ToRole="Exams" />
+          <NavigationProperty Name="Users" Relationship="practiceModel.FK__Users__EmployeeI__44FF419A" FromRole="Employees" ToRole="Users" />
+        </EntityType>
+        <Association Name="FK__Exams__EmployeeI__47DBAE45">
+          <End Type="practiceModel.Employees" Role="Employees" Multiplicity="0..1" />
+          <End Type="practiceModel.Exams" Role="Exams" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Exams">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Users__EmployeeI__44FF419A">
+          <End Type="practiceModel.Employees" Role="Employees" Multiplicity="0..1" />
+          <End Type="practiceModel.Users" Role="Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище practiceModelContainer" CdmEntityContainer="practiceEntities">
-          <EntitySetMapping Name="Employees">
-            <EntityTypeMapping TypeName="practiceModel.Employees">
-              <MappingFragment StoreEntitySet="Employees">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
-                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
-                <ScalarProperty Name="Department" ColumnName="Department" />
-                <ScalarProperty Name="Position" ColumnName="Position" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Exams">
             <EntityTypeMapping TypeName="practiceModel.Exams">
               <MappingFragment StoreEntitySet="Exams">
@@ -356,6 +339,17 @@
                 <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="practiceModel.Employees">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
