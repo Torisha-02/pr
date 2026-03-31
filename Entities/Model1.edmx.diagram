@@ -5,16 +5,16 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="874cca97088f4304a073235e82f32db4" Name="Diagram1">
-        <EntityTypeShape EntityType="practiceModel.Employees" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
         <EntityTypeShape EntityType="practiceModel.Exams" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="practiceModel.HealthGroups" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="practiceModel.Roles" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="practiceModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="7.875" IsExpanded="true" />
         <EntityTypeShape EntityType="practiceModel.Users" Width="1.5" PointX="6" PointY="4.375" IsExpanded="true" />
-        <AssociationConnector Association="practiceModel.FK__Exams__EmployeeI__47DBAE45" ManuallyRouted="false" />
-        <AssociationConnector Association="practiceModel.FK__Users__EmployeeI__44FF419A" ManuallyRouted="false" />
         <AssociationConnector Association="practiceModel.FK__Exams__HealthGro__49C3F6B7" ManuallyRouted="false" />
         <AssociationConnector Association="practiceModel.FK__Users__RoleId__440B1D61" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="practiceModel.Employees" Width="1.5" PointX="0.75" PointY="4.375" />
+        <AssociationConnector Association="practiceModel.FK__Exams__EmployeeI__47DBAE45" />
+        <AssociationConnector Association="practiceModel.FK__Users__EmployeeI__44FF419A" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

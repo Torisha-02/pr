@@ -22,7 +22,7 @@ namespace WpfApp1.Pages
     public partial class DoctorPage : Page
     {
         
-        private Users _currentUser;
+        
         public DoctorPage(Users user)
         {
             InitializeComponent();

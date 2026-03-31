@@ -25,7 +25,7 @@ namespace WpfApp1.Entities
         public Nullable<bool> IsFit { get; set; }
         public Nullable<System.DateTime> NextExamDate { get; set; }
     
-        public virtual Employees Employees { get; set; }
         public virtual HealthGroups HealthGroups { get; set; }
+        public virtual Employees Employees { get; set; }
     }
 }
